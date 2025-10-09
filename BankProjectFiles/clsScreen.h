@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include "Global.h"
-
+#include "Libary C++ By oop/Data_Lib.h"
 using namespace std;
 
 class clsScreen
@@ -9,6 +9,7 @@ class clsScreen
 protected:
     static void _DrawScreenHeader(string Title, string SubTitle = "")
     {
+        clsDate_Lib Date;
         cout << "\t\t\t\t\t______________________________________";
         cout << "\n\n\t\t\t\t\t  " << Title;
         if (SubTitle != "")
@@ -16,6 +17,9 @@ protected:
             cout << "\n\t\t\t\t\t  " << SubTitle;
         }
         cout << "\n\t\t\t\t\t______________________________________\n\n";
+        cout << "\t\t\t\t\tUser: " << CurrentUser.UserName;
+        cout << "\n\t\t\t\t\t" << "Date: " << Date.GetDay() << "/" << Date.GetMonth() << "/" << Date.GetYear() << endl;
+
     }
 
     static bool CheckAccessRights(clsUser::enPermissions Permission)
