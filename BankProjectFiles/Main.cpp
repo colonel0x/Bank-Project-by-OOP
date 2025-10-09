@@ -1,5 +1,6 @@
 #include <iostream>
 #include "ShowLoginScreen.h"
+#include "Global.h"
 using namespace std;
 
 

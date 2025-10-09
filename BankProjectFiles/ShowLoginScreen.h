@@ -12,17 +12,25 @@ class clsLoginScreen :protected clsScreen
 
 private:
 
+
+    static void _WarningScreen(short CounterNumber)
+    {
+        cout << "\nInvlaid Username/Password!\n";
+        cout << "You have " << CounterNumber << " Trails to login.\n" << endl;
+
+    }
+
     static  void _Login()
     {
         bool LoginFaild = false;
-
+        short CounterNumber = 3;
         string Username, Password;
         do
         {
 
             if (LoginFaild)
             {
-                cout << "\nInvlaid Username/Password!\n\n";
+                _WarningScreen(CounterNumber);
             }
 
             cout << "Enter Username? ";
@@ -35,10 +43,18 @@ private:
 
             LoginFaild = CurrentUser.IsEmpty();
 
-        } while (LoginFaild);
+        } while (LoginFaild && CounterNumber != 0);
 
-        clsMainScreen::ShowMainMenue();
-
+        if (!LoginFaild)
+        {
+            clsMainScreen::ShowMainMenue();
+            FailLogin = true;
+        }
+        else
+        {
+            FailLogin = false;
+            cout << "\nyou are locked after 3 faild trails.\n";
+        }
     }
 
 public:
