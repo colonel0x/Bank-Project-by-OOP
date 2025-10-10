@@ -12,7 +12,7 @@ using namespace std;
 int main()
 {
 	
-	while (true) 
+	while (FailLogin)
 	{
 		clsLoginScreen::ShowLoginScreen();
 	};
