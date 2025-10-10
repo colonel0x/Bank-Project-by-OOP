@@ -7,6 +7,7 @@
 #include "UI_Operations_Client.h"
 #include "clsScreen.h"
 #include "clsBankUser.h"
+#include "clsLoginRegister.h"
 #include <iomanip>
 #include <vector>
 class clsUI_Operations : protected clsScreen
@@ -45,7 +46,16 @@ static void _Print(clsBankClient Client)
 	cout << clsUtility::Tab(5) << "Balance         :" << Client.AccountBalance;
 	cout << clsUtility::Tab(5) << "_____________________\n";
 }
+static void _PrintLoginRegister(clsLoginRegister UserLoginData)
+{
 
+
+	cout << "\t\t| " << left << setw(22) << UserLoginData.GetDate_Time()
+		<< "| " << setw(20) << UserLoginData.GetUserName()
+		<< "| " << setw(12) << UserLoginData.GetPinCode()
+		<< "| " << setw(12) << UserLoginData.GetPermission() << "|\n";
+
+}
 
 public:
 static	void ReadClientInfo(clsBankClient& Client)
@@ -355,7 +365,36 @@ static  void ShowFindClientScreen()
 
 
 }
+static  void ShowLoginList()
+{
 
+
+	if (!CheckAccessRights(clsUser::enPermissions::pLoginRegisterScreen))
+	{
+		return;
+	}
+
+	vector <clsLoginRegister> vDataLoginRegisterRecord;
+	vDataLoginRegisterRecord = clsLoginRegister::GetDataRegister();
+	string SubTitle = "\t(" + to_string(vDataLoginRegisterRecord.size()) + ") Record(s)\n";
+	_DrawScreenHeader("Login Register List Screen", SubTitle);
+
+	cout <<"\t\t" << string(80, '_') << "\n";
+	cout << "\t\t| " << left << setw(22) << "Date/Time"
+		<< "| " << setw(20) << "UserName"
+		<< "| " << setw(12) << "Password"
+		<< "| " << setw(12) << "Permission" << "|\n";
+	cout <<"\t\t" << string(80, '_') << "\n";
+
+	for(clsLoginRegister LoginData: vDataLoginRegisterRecord)
+	{
+
+		_PrintLoginRegister(LoginData);
+
+	}
+
+
+}
 
 class clsTransActionMenue : protected clsScreen {
 

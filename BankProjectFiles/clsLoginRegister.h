@@ -3,12 +3,16 @@
 #include <string>
 #include <fstream>
 #include "Libary C++ By oop/String.h"
-#include "Libary C++ By oop/Data_Lib.h"
+#include "/Users/Mr.x/Desktop/Libary C++ By oop/Data_Lib.h"
 #include "Global.h"
+
 class clsLoginRegister
 {
-
-
+	string _Date_Time = "";
+	string _UserName = "";
+	string _Permission = "";
+	string _PINCODE = "";
+ 
 	
 static	void _AddToLogFile(string Text)
 	{
@@ -24,12 +28,81 @@ static	void _AddToLogFile(string Text)
 		LogFile << Text << endl;
 
 	}
-
+	LogFile.close();
 
 	
 	}
 
+static clsLoginRegister _ConvertLineToRecord(vector <string> Data)
+{
+	clsLoginRegister clsData;
+
+	 clsData._Date_Time = Data[0];
+	 clsData._UserName = Data[1];
+	 clsData._Permission = Data[2];
+	 clsData._PINCODE = Data[3];
+
+
+	 return clsData;
+
+}
+static vector <clsLoginRegister> _LoadDataFromLoginFile()
+	{
+
+		fstream MyFile;
+		string Line = "";
+		vector <clsLoginRegister> vDataLoginRegisterRecord;
+		MyFile.open("Login_Register.txt", std::ios::in);
+
+		if (MyFile.is_open())
+		{
+
+			while (getline(MyFile, Line))
+			{
+				vDataLoginRegisterRecord.push_back(_ConvertLineToRecord(clsString::clsStr_Splits_Fun::SplitStringRecord(Line, "#//#")));
+
+			}
+
+		}
+		MyFile.close();
+
+
+		return vDataLoginRegisterRecord;
+	}
+
 public:
+
+	string GetDate_Time()
+	{
+	
+		return _Date_Time;
+	}
+	string GetUserName()
+	{
+
+		return _UserName;
+	}
+
+	string GetPinCode()
+	{
+
+		return _PINCODE;
+	}
+
+	string GetPermission()
+	{
+
+		return _Permission;
+	}
+
+
+	
+	static vector <clsLoginRegister> GetDataRegister()
+	{
+	
+		return	_LoadDataFromLoginFile();
+	
+	}
 	static void Regist_LoginToSystem()
 	{
 		clsDate_Lib Date1;
