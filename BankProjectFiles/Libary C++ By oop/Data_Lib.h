@@ -1297,8 +1297,22 @@ public:
 
 	
 
+	 string GetSystemTime()
+	 {
 
 
+
+		 string TimeNow;
+		 time_t t = time(0);
+		 tm* Now = localtime(&t);
+
+		 TimeNow = to_string(Now->tm_hour) + ":" + to_string(Now->tm_min) + ":" + to_string(Now->tm_sec);
+
+		 return TimeNow;
+
+
+
+	 }
 
 
 
