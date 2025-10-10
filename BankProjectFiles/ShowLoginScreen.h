@@ -6,6 +6,7 @@
 #include "clsBankUser.h"
 #include "clsMainScreen.h"
 #include "Global.h"
+#include "clsLoginRegister.h"
 
 class clsLoginScreen :protected clsScreen
 {
@@ -49,6 +50,7 @@ private:
 
         if (!LoginFaild)
         {
+            clsLoginRegister::Regist_LoginToSystem();
             clsMainScreen::ShowMainMenue();
             FailLogin = true;
         }
