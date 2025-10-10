@@ -20,17 +20,19 @@ private:
 
     }
 
+
     static  void _Login()
     {
         bool LoginFaild = false;
-        short CounterNumber = 3;
+        short FailLoginCount = 2;
         string Username, Password;
         do
         {
 
             if (LoginFaild)
             {
-                _WarningScreen(CounterNumber);
+                _WarningScreen(FailLoginCount);
+                FailLoginCount--;
             }
 
             cout << "Enter Username? ";
@@ -43,7 +45,7 @@ private:
 
             LoginFaild = CurrentUser.IsEmpty();
 
-        } while (LoginFaild && CounterNumber != 0);
+        } while (LoginFaild && FailLoginCount != 0);
 
         if (!LoginFaild)
         {
@@ -55,7 +57,9 @@ private:
             FailLogin = false;
             cout << "\nyou are locked after 3 faild trails.\n";
         }
+
     }
+
 
 public:
 
