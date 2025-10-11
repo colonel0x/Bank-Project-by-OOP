@@ -128,6 +128,12 @@ class clsUI_Operations_User : protected clsScreen
             Permissions += clsUser::enPermissions::pManageUsers;
         }
 
+        cout << "\nLogin Register Screen? y/n? ";
+        cin >> Answer;
+        if (Answer == 'y' || Answer == 'Y')
+        {
+            Permissions += clsUser::enPermissions::pLoginRegisterScreen;
+        }
         return Permissions;
 
     }

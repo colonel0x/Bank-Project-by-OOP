@@ -39,10 +39,9 @@ static clsLoginRegister _ConvertLineToRecord(vector <string> Data)
 
 	 clsData._Date_Time = Data[0];
 	 clsData._UserName = Data[1];
-	 clsData._Permission = Data[2];
-	 clsData._PINCODE = Data[3];
-
-
+     clsData._PINCODE = Data[2];
+     clsData._Permission = Data[3];
+	
 	 return clsData;
 
 }
