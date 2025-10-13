@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-#include "Data_Lib.h"
+#include "/Users/Mr.x/Desktop/Libary C++ By oop/Data_Lib.h"
 using namespace std;
 
 
@@ -133,11 +133,13 @@ public:
 	static float ReadFloatNumber(string Text = "")
 	{
 		float Num = 0;
-
+		cout << Text;
 		while (!(cin >> Num)) {
+
 			cin.clear();
+			
 			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-			cout << Text;
+			
 		};
 		return Num;
 

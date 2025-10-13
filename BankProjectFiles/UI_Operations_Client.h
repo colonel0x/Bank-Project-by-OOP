@@ -421,11 +421,11 @@ private:
 	{
 	
 		cout << "\nClient Card:";
-		cout << "\n___________________";
+		cout << "\n___________________________";
 		cout << "\nFull Name   : " << Client.FullName();
 		cout << "\nAcc. Number : " << Client.GetAccountNumber();
 		cout << "\nBalance     : " << Client.AccountBalance;
-		cout << "\n___________________\n";
+		cout << "\n___________________________\n";
 
 	
 	}
@@ -615,8 +615,8 @@ public:
 		string AccountNumber_1 = "";
 		
 		_DrawScreenHeader(Title);
-
-		AccountNumber_1 = _ReadAccountNumber("Please Enter Account Number to Transfer From: ");
+		cout << string(100, '=');
+		AccountNumber_1 = _ReadAccountNumber("\nPlease Enter Account Number to Transfer From: ");
 		while (!clsBankClient::IsAccountExist(AccountNumber_1))
 		{
 
@@ -634,9 +634,8 @@ public:
 
 		string AccountNumber_2 = "";
 
-		_DrawScreenHeader(Title);
-
 		AccountNumber_2 = _ReadAccountNumber("Please Enter Account Number to Transfer To: ");
+
 		while (!clsBankClient::IsAccountExist(AccountNumber_2))
 		{
 
