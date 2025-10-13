@@ -8,8 +8,10 @@
 #include "clsScreen.h"
 #include "clsBankUser.h"
 #include "clsLoginRegister.h"
+#include "clsTransferLog.h"
 #include <iomanip>
 #include <vector>
+
 class clsUI_Operations : protected clsScreen
 {
 static void _PrintClientRecordLine(clsBankClient Client)
@@ -467,6 +469,13 @@ private:
 	   {
 		  
 		   FROM_Client_1.TransferAmount(TO_Client_2, Amount_Transfer);
+		   clsTransferLog::Regist_TransferLOG(
+			   FROM_Client_1.GetAccountNumber(), 
+			   TO_Client_2.GetAccountNumber(),
+			   to_string(Amount_Transfer),
+			   to_string(FROM_Client_1.AccountBalance),
+			   to_string(TO_Client_2.AccountBalance));
+		   cout << "\nTransfer Success (:\n";
 
 	   }
 	   else
