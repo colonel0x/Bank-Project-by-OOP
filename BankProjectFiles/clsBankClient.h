@@ -4,6 +4,7 @@
 #include "Libary C++ By oop/String.h"
 #include "Libary C++ By oop/clsUtil.h"
 #include "clsPerson.h"
+
 #include <vector>
 #include <fstream>
 using namespace std;
@@ -149,7 +150,7 @@ class clsBankClient :public clsPerson
 
 			_AddDataLineToFile(_ConvertObjectClientToLine(*this));
 		}
-
+	
 
 public:
 
@@ -372,7 +373,7 @@ public:
 
 
 	}
-	void Deposit(double Amount)
+	void Deposit(double Amount) 
 	{
 		_AccountBalance += Amount;
 		Save();
@@ -391,8 +392,18 @@ public:
 			return true;
 		}
 		}
+     void TransferAmount( clsBankClient TO_Client_2,float Amount_Transfer)
+	{
+		// (this) == FROM_CLIENT_1; 
+		 this->AccountBalance -= Amount_Transfer;
+
+		TO_Client_2.AccountBalance += Amount_Transfer;
+
+		Save();
+		TO_Client_2.Save();
 
 
+	}
 
 
 

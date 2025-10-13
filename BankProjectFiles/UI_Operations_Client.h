@@ -417,10 +417,23 @@ private:
 
 	}
 
-	static string _ReadAccountNumber()
+	static void _PrintClientCard(clsBankClient Client)
+	{
+	
+		cout << "\nClient Card:";
+		cout << "\n___________________";
+		cout << "\nFull Name   : " << Client.FullName();
+		cout << "\nAcc. Number : " << Client.GetAccountNumber();
+		cout << "\nBalance     : " << Client.AccountBalance;
+		cout << "\n___________________\n";
+
+	
+	}
+
+	static string _ReadAccountNumber(string Text = "\nPlease enter AccountNumber? ")
 	{
 		string AccountNumber = "";
-		cout << "\nPlease enter AccountNumber? ";
+		cout << Text;
 		cin >> AccountNumber;
 		return AccountNumber;
 	}
@@ -431,6 +444,40 @@ private:
         cout << "| " << setw(40) << left << Client.FullName();
         cout << "| " << setw(12) << left << Client.AccountBalance;
     }
+
+   static void _StartAction(clsBankClient FROM_Client_1, clsBankClient TO_Client_2)
+   {
+   
+	   float Amount_Transfer = 0;
+	 //  clsBankClient Client_1 = FROM_Client_1;
+	   //clsBankClient Client_2 = TO_Client_2;
+
+	   Amount_Transfer = clsInputValidation::ReadFloatNumber("Enter transfer amount: ");
+
+	   while(Amount_Transfer > FROM_Client_1.AccountBalance)
+	   {
+		   cout << "\nAmount exceeds the available Balance, Enter another Amount: ";
+	   }
+
+	   char Answer = 'n';
+	   cout << "\nAre you sure you want perform this operation y/n: ";
+	   cin >> Answer;
+
+	   if (Answer == 'Y' || Answer == 'y')
+	   {
+		  
+		   FROM_Client_1.TransferAmount(TO_Client_2, Amount_Transfer);
+
+	   }
+	   else
+	   {
+		   cout << "\nOperation was cancelled.\n";
+	   }
+
+   
+   }
+
+
 public:
 
 	static void ShowDepositScreen()
@@ -556,9 +603,56 @@ public:
         cout << setw(8) << left << "" << "\t\t\t\t  ( " << clsUtility::NumberToText(TotalBalances) << ")";
     }
 
+	static void ShowTransferScreen()
+	{
+	
+		// --------------------
+		// Clinet 1
+		// --------------------
+
+
+		string Title = "Tranfer Screen";
+		string AccountNumber_1 = "";
+		
+		_DrawScreenHeader(Title);
+
+		AccountNumber_1 = _ReadAccountNumber("Please Enter Account Number to Transfer From: ");
+		while (!clsBankClient::IsAccountExist(AccountNumber_1))
+		{
+
+			AccountNumber_1 = _ReadAccountNumber("Account Not Found\nPlease Enter Account Number to Transfer From: ");
+
+		}
+
+		clsBankClient Client_1 = clsBankClient::Find(AccountNumber_1);
+		_PrintClientCard(Client_1);
+
+
+		// --------------------
+		// Clinet 2
+		// --------------------
+
+		string AccountNumber_2 = "";
+
+		_DrawScreenHeader(Title);
+
+		AccountNumber_2 = _ReadAccountNumber("Please Enter Account Number to Transfer To: ");
+		while (!clsBankClient::IsAccountExist(AccountNumber_2))
+		{
+
+			AccountNumber_2 = _ReadAccountNumber("Account Not Found\nPlease Enter Account Number to Transfer From: ");
+
+		}
+
+		clsBankClient Client_2 = clsBankClient::Find(AccountNumber_2);
+		_PrintClientCard(Client_2);
+
+		_StartAction(Client_1, Client_2);
+
+	}
 
 };
-
+ 
 
 
 };
