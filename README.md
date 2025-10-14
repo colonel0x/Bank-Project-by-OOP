@@ -37,3 +37,8 @@ This project is written in **C++** using **Object-Oriented Programming (OOP)** c
 - Do **not** attempt to compile this project using g++ or other non-MSVC compilers.  
 - Make sure all header files are **inside the project folder** or a subfolder included in the project.  
 - After pasting `Main.cpp` and header files, **build and run the program in Visual Studio 2022**.
+
+## Login
+- To Login use
+- Username: Admin
+- Password: 12345
