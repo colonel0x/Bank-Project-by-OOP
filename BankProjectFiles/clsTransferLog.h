@@ -8,17 +8,7 @@
 
 class clsTransferLog
 {
-	//struct Info
-	//{
-	//	string _Date_Time;
-	//	string _AccountNumber_1;
-	//	string _AccountNumber_2;
-	//	string _TransferAmount;
-	//	string _was_Balance_Transfer_From;
-	//	string _was_Balance_Transfer_To;
-	//	string _User_Performed_TheAction;
-
-	//};
+	
 
 	static	void _AddToLogFile(string Text)
 	{
@@ -38,9 +28,74 @@ class clsTransferLog
 
 
 	}
+	struct  sInfo;
 
+
+
+	static sInfo _ConvertLineToRecord(string Line)
+	{
+
+
+		sInfo LogInfo;
+		clsString::clsStr_Splits_Fun StringLIb;
+		StringLIb.StringValue = Line;
+
+		vector <string> TransferLOG_Info = StringLIb.SplitStringRecord();
+
+
+		LogInfo._Date_Time = TransferLOG_Info[0];
+		LogInfo._AccountNumber_1 = TransferLOG_Info[1];
+		LogInfo._AccountNumber_2 = TransferLOG_Info[2];
+		LogInfo._TransferAmount = TransferLOG_Info[3];
+		LogInfo._Balance_After_Transfer_From = TransferLOG_Info[4];
+		LogInfo._Balance_After_Transfer_To = TransferLOG_Info[5];
+		LogInfo._User_Performed_TheAction = TransferLOG_Info[6];
+
+		return LogInfo;
+	
+	}
+	
 public:
+	static vector <sInfo>  LoadDataFromTransferLog()
+	{
 
+		vector <sInfo> TransferLOG_Info;
+		fstream LogFile;
+		string Line = "";
+
+		LogFile.open("TransferLog.txt", std::ios::in);
+
+		if (LogFile.is_open())
+		{
+			while (getline(LogFile, Line))
+			{
+
+				TransferLOG_Info.push_back(_ConvertLineToRecord(Line));
+
+
+
+			}
+
+			LogFile.close();
+
+		};
+
+
+		return TransferLOG_Info;
+
+	};
+
+struct sInfo
+	{
+		string _Date_Time;
+		string _AccountNumber_1;
+		string _AccountNumber_2;
+		string _TransferAmount;
+		string _Balance_After_Transfer_From;
+		string _Balance_After_Transfer_To;
+		string _User_Performed_TheAction;
+
+	};
 
 	static void Regist_TransferLOG(
 		string AccountFROM,

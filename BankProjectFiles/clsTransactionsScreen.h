@@ -14,13 +14,13 @@ class clsTransactionsScreen :protected clsScreen
 private: 
     enum enTransactionsMenueOptions {
         eDeposit = 1, eWithdraw = 2,
-        eShowTotalBalance = 3,eTransfer = 4, eShowMainMenue = 5
+        eShowTotalBalance = 3,eTransfer = 4,eTransferLog = 5, eShowMainMenue = 6
     };
 
     static short ReadTransactionsMenueOption()
     {
         cout << setw(37) << left << "" << "Choose what do you want to do? [1 to 5]? ";
-        short Choice = clsInputValidation::ReadShortNumberBetween(1, 5, "Enter Number between 1 to 5? ");
+        short Choice = clsInputValidation::ReadShortNumberBetween(1, 6, "Enter Number between 1 to 5? ");
         return Choice;
     }
 
@@ -44,6 +44,12 @@ private:
     {
 
          clsUI_Operations::clsTransActionMenue::ShowTransferScreen();
+
+    }
+    static void TransferLogScreen()
+    {
+
+        clsUI_Operations::clsTransActionMenue::ShowTransferLogScreen();
 
     }
 
@@ -89,7 +95,13 @@ private:
             _GoBackToTransactionsMenue();
             break;
         }
-
+        case enTransactionsMenueOptions::eTransferLog:
+        {
+            system("cls");
+            TransferLogScreen();
+            _GoBackToTransactionsMenue();
+            break;
+        }
         case enTransactionsMenueOptions::eShowMainMenue:
         {
             //do nothing here the main screen will handle it :-) ;
@@ -122,7 +134,8 @@ public:
         cout << setw(37) << left << "" << "\t[2] Withdraw.\n";
         cout << setw(37) << left << "" << "\t[3] Total Balances.\n";
         cout << setw(37) << left << "" << "\t[4] Transfer.\n";
-        cout << setw(37) << left << "" << "\t[5] Main Menue.\n";
+        cout << setw(37) << left << "" << "\t[5] Transfer Log.\n";
+        cout << setw(37) << left << "" << "\t[6] Main Menue.\n";
         cout << setw(37) << left << "" << "===========================================\n";
 
         _PerformTransactionsMenueOption((enTransactionsMenueOptions)ReadTransactionsMenueOption());

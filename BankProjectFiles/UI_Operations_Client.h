@@ -398,6 +398,11 @@ static  void ShowLoginList()
 
 }
 
+
+
+
+
+
 class clsTransActionMenue : protected clsScreen {
 
 
@@ -486,7 +491,20 @@ private:
    
    }
 
+   static void PrintRecord(clsTransferLog::sInfo sInfoRecordLog)
+   {
+   
+	   cout << "\n";
+	   cout << setw(24) << left << "| " + sInfoRecordLog._Date_Time;
+	   cout <<" "<< setw(12) << left << "| " + sInfoRecordLog._AccountNumber_1;
+	   cout <<" "<< setw(12) << left << "| " + sInfoRecordLog._AccountNumber_2;
+	   cout <<" "<< setw(15) << left << "| " + sInfoRecordLog._TransferAmount;
+	   cout <<" "<< setw(15) << left << "| " + sInfoRecordLog._Balance_After_Transfer_From;
+	   cout <<" "<< setw(14) << left << "| " + sInfoRecordLog._Balance_After_Transfer_To;
+	   cout <<" "<< setw(10) << left << "| " + sInfoRecordLog._User_Performed_TheAction;
 
+
+   }
 public:
 
 	static void ShowDepositScreen()
@@ -658,6 +676,36 @@ public:
 		_StartAction(Client_1, Client_2);
 
 	}
+
+	static void ShowTransferLogScreen()
+	{
+
+		
+		vector<clsTransferLog::sInfo> LogsInfo = clsTransferLog::LoadDataFromTransferLog();
+		string Text = "(" + to_string(LogsInfo.size()) + ") Record(s).";
+		
+		_DrawScreenHeader("Transfer Log List Screen", Text);
+		cout << string(120, '_') << endl;
+		cout << setw(26)<< "\n| Date/Time";
+		cout << setw(13) << "| s.Acct";
+		cout << setw(13) << "| d.Acct";
+		cout << setw(16) << "| Amount";
+		cout << setw(15) << "| s.Balance";
+		cout << setw(16) << "| d.Balance";
+		cout << setw(10) << "| User";
+		cout << "\n" << string(120, '_') << endl;
+
+		for(clsTransferLog::sInfo InfoRecordLog: LogsInfo)
+		{
+		
+			PrintRecord(InfoRecordLog);
+
+		
+		}
+		cout << "\n" << string(120, '_') << endl;
+
+	}
+	
 
 };
  
