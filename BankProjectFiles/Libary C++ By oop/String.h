@@ -710,7 +710,7 @@ vector<string> SplitStringRecord(string space = "#//#")
 
 		Word = _TemporaryText.substr(0, POS);
 		vStringVector.push_back(Word);
-		_TemporaryText.erase(0, POS + 1);
+		_TemporaryText.erase(0, POS + space.length());
 
 
 
