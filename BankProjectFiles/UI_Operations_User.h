@@ -3,8 +3,8 @@
 #include "clsScreen.h"
 #include "clsBankUser.h"
 #include "Libary C++ By oop/clsInputValidate.h"
-#include <iomanip>
 
+#include <iomanip>
 
 
 
@@ -195,7 +195,7 @@ class clsUI_Operations_User : protected clsScreen
         clsUser NewUser = clsUser::GetAddNewUserObject(UserName);
 
         _ReadUserInfo(NewUser);
-
+  
         clsUser::enSaveResults SaveResult;
 
         SaveResult = NewUser.Save();
@@ -268,7 +268,7 @@ class clsUI_Operations_User : protected clsScreen
 
            string UserName = "";
 
-           cout << "\nPlease Enter User UserName: ";
+           cout << "\nPlease Enter UserName: ";
            UserName = clsInputValidation::ReadString();
 
            while (!clsUser::IsUserExist(UserName))
@@ -294,7 +294,7 @@ class clsUI_Operations_User : protected clsScreen
 
 
                _ReadUserInfo(User1);
-
+              
                clsUser::enSaveResults SaveResult;
 
                SaveResult = User1.Save();

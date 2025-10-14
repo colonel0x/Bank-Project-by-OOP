@@ -26,7 +26,7 @@ private:
         vUserData = clsString::clsStr_Splits_Fun::SplitStringRecord(Line, Seperator);
 
         return clsUser(enMode::UpdateMode, vUserData[0], vUserData[1], vUserData[2],
-            vUserData[3], vUserData[4], vUserData[5], stoi(vUserData[6]));
+            vUserData[3], vUserData[4], clsUtility::DecryptText(vUserData[5], 55), stoi(vUserData[6]));
 
     }
 
@@ -39,7 +39,7 @@ private:
         UserRecord += User.Email + Seperator;
         UserRecord += User.Phone + Seperator;
         UserRecord += User.UserName + Seperator;
-        UserRecord += User.Password + Seperator;
+        UserRecord += clsUtility::EncryptText(User.Password, 55)+ Seperator;
         UserRecord += to_string(User.Permissions);
 
         return UserRecord;
@@ -114,7 +114,9 @@ private:
         {
             if (U.UserName == UserName)
             {
+               
                 U = *this;
+         
                 break;
             }
 
@@ -244,6 +246,7 @@ public:
     {
 
         fstream MyFile;
+  
         MyFile.open("Users.txt", ios::in);//read Mode
 
         if (MyFile.is_open())
@@ -253,7 +256,7 @@ public:
             {
                 clsUser User = _ConvertLinetoUserObject(Line);
                 if (User.UserName == UserName && User.Password == Password)
-                {
+                { 
                     MyFile.close();
                     return User;
                 }
