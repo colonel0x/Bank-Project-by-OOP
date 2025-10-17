@@ -83,7 +83,7 @@ public:
 				IsFirstLetter = (_Text[i] == ' ') ? true : false;
 			}
 
-		}
+		} 
 	void ChangeStringToUpper_FirstLetter()
 	{
 
@@ -158,7 +158,25 @@ public:
 		}
 
 	}
+	static string ChangeStringToUpper(string Text)
+	{
 
+		bool IsFirstLetter;
+
+		for (short i = 0; i < Text.length(); i++)
+		{
+			IsFirstLetter = (Text[i] != ' ') ? true : false;
+
+			if (Text[i] != ' ' && IsFirstLetter)
+			{
+
+				Text[i] = toupper(Text[i]);
+			}
+
+
+		}
+		return Text;
+	}
 
 
 		__declspec(property(get = GetString, put = SetString)) string StringValue;
@@ -594,7 +612,7 @@ void PrintEachWordFromString()
 	};
 	
 	
-	
+	 
 	class clsStr_Splits_Fun {
 	
 	private:
@@ -655,7 +673,7 @@ void PrintEachWordFromString()
 
 
 		}
-__declspec(property(get = GetString, put = SetString)) string StringValue;
+        __declspec(property(get = GetString, put = SetString)) string StringValue;
 		__declspec(property(get = GetChar, put = SetChar)) char CharValue;
 
 
@@ -729,8 +747,7 @@ vector<string> SplitStringRecord(string space = "#//#")
 
 }
 
-		
-		
+	
 static vector<string> SplitStringRecord(string Line,string space = "#//#")
 {
 
@@ -763,6 +780,38 @@ static vector<string> SplitStringRecord(string Line,string space = "#//#")
 	return vStringVector;
 
 }
+
+static string FindWord(string Line, string space = "#//#")
+{
+
+
+	short POS ;
+	POS = Line.find(space);
+	Line.erase(0, 1);
+	Line.erase(3, Line.length());
+
+		
+		return Line;
+
+	
+}
+static float FindCurrency(string Line, string space = "#//#")
+{
+
+
+	short POS;
+	float Number = 0;
+	POS = Line.find(space);
+	Line.erase(0, POS+1);
+	Number = stof(Line);
+
+	return Number;
+
+
+}
+
+
+
 
 
 
