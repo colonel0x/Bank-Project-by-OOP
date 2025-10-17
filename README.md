@@ -74,5 +74,10 @@ How to Enable Option 5 - Update All Currency Rate:
 - Make sure you have an active internet connection when using this option.
 - Free API keys may have a daily request limit. Check your account limits.
 - If the update fails, verify that your API key is correct and the URL is properly formatted.
+
+ ## Watch the Video:
+ 
+[![Watch the Video](https://img.youtube.com/vi/6Y2wJ13BG0o/0.jpg)](https://youtu.be/6Y2wJ13BG0o?si=zan0HWLVOPJNqEjv)
+
 ______________________________________________________________________________________________
 >>>>>>> 3d774c1 (Update banking headers, README, and add currency exchange files)
