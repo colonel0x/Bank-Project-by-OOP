@@ -392,7 +392,7 @@ public:
 			return true;
 		}
 		}
-     void TransferAmount( clsBankClient TO_Client_2,float Amount_Transfer)
+     void TransferAmount(clsBankClient &TO_Client_2,float Amount_Transfer)
 	{
 		// (this) == FROM_CLIENT_1; 
 		 this->AccountBalance -= Amount_Transfer;

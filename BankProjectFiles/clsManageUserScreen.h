@@ -134,7 +134,6 @@ public:
     static void ShowManageUsersMenue()
     {
 
-
         if (!CheckAccessRights(clsUser::enPermissions::pManageUsers))
         {
             return;

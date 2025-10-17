@@ -11,7 +11,7 @@ class clsLoginRegister
 	string _Date_Time = "";
 	string _UserName = "";
 	string _Permission = "";
-	string _PINCODE = "";
+	string _Password = "";
  
 	
 static	void _AddToLogFile(string Text)
@@ -39,7 +39,7 @@ static clsLoginRegister _ConvertLineToRecord(vector <string> Data)
 
 	 clsData._Date_Time = Data[0];
 	 clsData._UserName = Data[1];
-     clsData._PINCODE = Data[2];
+	 (clsData._Password) = Data[2];
      clsData._Permission = Data[3];
 	
 	 return clsData;
@@ -85,7 +85,7 @@ public:
 	string GetPinCode()
 	{
 
-		return _PINCODE;
+		return _Password;
 	}
 
 	string GetPermission()
@@ -109,7 +109,7 @@ public:
 		const string Dele = "#//#";
 		Text = to_string(Date1.GetDay()) + "/" + to_string(Date1.GetMonth()) + "/" + to_string(Date1.GetYear()) + " - ";
 		Text += Date1.GetSystemTime() + Dele;
-		Text += (CurrentUser.GetUserName() + Dele + CurrentUser.GetPassword() + Dele) + to_string(CurrentUser.GetPermissions());
+		Text += (CurrentUser.GetUserName() + Dele + clsUtility::EncryptText(CurrentUser.Password, 55) + Dele) + to_string(CurrentUser.GetPermissions());
 		_AddToLogFile(Text);
 		Text = "";
 
