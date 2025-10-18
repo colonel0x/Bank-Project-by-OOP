@@ -80,4 +80,4 @@ How to Enable Option 5 - Update All Currency Rate:
 [![Watch the Video](https://img.youtube.com/vi/6Y2wJ13BG0o/0.jpg)](https://youtu.be/6Y2wJ13BG0o?si=zan0HWLVOPJNqEjv)
 
 ______________________________________________________________________________________________
->>>>>>> 3d774c1 (Update banking headers, README, and add currency exchange files)
+>>>>>>> 3d774c1 (Update banking headers, README, and add currency exchange files) >>>>>>>
